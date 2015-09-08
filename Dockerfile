@@ -9,7 +9,7 @@ ENV VERSION=v4.0.0-rc.4 CMD=node DOMAIN=nodejs.org RELEASE_TYPE=rc
 # ENV CONFIG_FLAGS="--fully-static --without-npm" DEL_PKGS="libgcc libstdc++" RM_DIRS=/usr/include
 
 RUN apk-install curl make gcc g++ python linux-headers paxctl libgcc libstdc++
-RUN curl -sSL https://${DOMAIN}/${RELEASE_TYPE}/${VERSION}/${CMD}-${VERSION}.tar.gz | tar -xz
+RUN curl -sSL https://${DOMAIN}/download/${RELEASE_TYPE}/${VERSION}/${CMD}-${VERSION}.tar.gz | tar -xz
 WORKDIR /${CMD}-${VERSION} 
 RUN ./configure --prefix=/usr ${CONFIG_FLAGS}
 RUN make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
