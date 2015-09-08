@@ -1,8 +1,7 @@
 FROM gliderlabs/alpine:3.2
 
 # ENV VERSION=v0.10.40 CMD=node DOMAIN=nodejs.org CFLAGS="-D__USE_MISC"
-ENV VERSION=v4.0.0-rc.4 CMD=node DOMAIN=nodejs.org RELEASE_TYPE=rc
-# ENV VERSION=v2.3.4 CMD=iojs DOMAIN=iojs.org NO_NPM_UPDATE=true
+ENV VERSION=v4.0.0 CMD=node DOMAIN=nodejs.org RELEASE_TYPE=release
 
 # For base builds
 # ENV CONFIG_FLAGS="--without-npm" RM_DIRS=/usr/include
@@ -24,4 +23,6 @@ RUN make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
   rm -rf /etc/ssl /${CMD}-${VERSION} ${RM_DIRS} \
     /usr/share/man /tmp/* /root/.npm /root/.node-gyp \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+
+RUN npm i -g npm@beta
 
