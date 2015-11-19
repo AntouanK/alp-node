@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:5.0.0
+FROM mhart/alpine-node:5.1.0
 
 RUN npm install -g npm && \
   find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf && \
